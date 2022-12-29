@@ -12,4 +12,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
   },
+  plugins: ["vue", "prettier"],
+  rules: {
+    "prettier/prettier": "error",
+  },
 };
