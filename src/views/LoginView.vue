@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import loginBackground from "@/assets/images/login-bg.jpg";
+import loginBackground from "@/assets/images/login-bg.jpg"
 
 export default {
   name: "LoginView",
