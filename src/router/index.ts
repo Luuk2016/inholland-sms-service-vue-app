@@ -5,6 +5,7 @@ import GroupsView from "@/views/Groups/GroupsView.vue";
 import LocationsView from "@/views/LocationsView.vue";
 import SpecificGroupView from "@/views/Groups/SpecificGroupView.vue";
 import CreateGroupView from "@/views/Groups/CreateGroupView.vue";
+import AddStudentToGroupView from "@/views/Groups/AddStudentToGroupView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,12 @@ const router = createRouter({
       path: "/create-group",
       name: "Create group",
       component: CreateGroupView,
+    },
+    {
+      path: "/groups/:id/add-student",
+      name: "Add student to group",
+      component: AddStudentToGroupView,
+      props: true,
     },
     {
       path: "/locations",

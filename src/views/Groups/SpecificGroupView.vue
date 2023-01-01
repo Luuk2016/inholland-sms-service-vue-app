@@ -13,14 +13,23 @@
         </thead>
         <tbody>
           <tr v-for="student in students" :key="student.id">
-            <td>{{ student.name }}</td>
+            <td>
+              <b>{{ student.name }}</b>
+            </td>
             <td>{{ student.phone_number }}</td>
           </tr>
         </tbody>
       </table>
       <button
         type="button"
-        class="btn btn-primary mt-3"
+        class="btn btn-primary mt-3 me-2"
+        @click="this.$router.push('/groups/' + group.id + '/add-student')"
+      >
+        Add student
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary mt-3"
         @click="this.$router.go(-1)"
       >
         Go back
