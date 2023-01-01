@@ -16,7 +16,7 @@
           <b>{{ group.name }}</b>
         </a>
       </div>
-      
+
       <button
         type="button"
         class="btn btn-primary mt-3"
