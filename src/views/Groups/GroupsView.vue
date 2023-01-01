@@ -4,7 +4,7 @@
     <div class="container">
       <h2 class="mt-3 mt-lg-5">Groups</h2>
 
-      <p>Click on a group to see more:</p>
+      <p>Click on a group to see more information:</p>
 
       <div class="list-group mt-3">
         <a
