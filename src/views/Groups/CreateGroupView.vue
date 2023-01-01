@@ -22,7 +22,7 @@
           <div class="input-group mb-3">
             <span class="input-group-text">Location *</span>
             <select class="form-select" v-model="group.location_id">
-              <option :value="null" disabled>Please select an location</option>
+              <option :value="null" disabled>Please select a location</option>
               <option
                 v-for="location in locations"
                 :key="location.id"
