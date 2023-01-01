@@ -8,6 +8,9 @@ import "./assets/main.css";
 
 const app = createApp(App);
 
+app.config.globalProperties.baseAPI = "http://localhost:5000";
+app.config.globalProperties.messagingAPI = "";
+
 app.use(createPinia());
 app.use(router);
 
