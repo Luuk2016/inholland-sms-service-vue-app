@@ -1,13 +1,13 @@
 <template>
   <div class="d-lg-flex half">
-    <img class="bg order-1 order-md-2" :src="image" alt="Login image" />
+    <img class="bg order-1 order-md-2" :src="loginBackground" alt="Login background" />
     <div class="contents order-2 order-md-1">
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
             <h3>Login to <strong>Inholland SMS service</strong></h3>
 
-            <form action="#" method="post">
+            <form action="#" method="post" class="mt-3">
               <div class="form-group">
                 <input
                   type="text"
@@ -16,7 +16,7 @@
                   v-model="login.email"
                 />
               </div>
-              <div class="form-group mb-5">
+              <div class="form-group mb-3">
                 <input
                   type="password"
                   class="form-control"
@@ -54,7 +54,7 @@ export default {
         email: "",
         password: "",
       },
-      image: loginBackground,
+      loginBackground: loginBackground,
     };
   },
   computed: {
