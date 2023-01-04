@@ -1,6 +1,10 @@
 <template>
   <div class="d-lg-flex half">
-    <img class="bg order-1 order-md-2" :src="loginBackground" alt="Login background" />
+    <img
+      class="bg order-1 order-md-2"
+      :src="loginBackground"
+      alt="Login background"
+    />
     <div class="contents order-2 order-md-1">
       <div class="container">
         <div class="row align-items-center justify-content-center">
