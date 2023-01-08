@@ -6,7 +6,7 @@ import LocationsView from "@/views/LocationsView.vue";
 import SpecificGroupView from "@/views/Groups/SpecificGroupView.vue";
 import CreateGroupView from "@/views/Groups/CreateGroupView.vue";
 import AddStudentToGroupView from "@/views/Groups/AddStudentToGroupView.vue";
-import {useLecturerStore} from "@/stores/lecturer";
+import { useLecturerStore } from "@/stores/lecturer";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,9 +58,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = `SMS Service - ${String(to.name)}`;
-
   const userStore = useLecturerStore();
+  document.title = `SMS Service - ${String(to.name)}`;
 
   if (to.meta.requiresAuth && !userStore.isAuthenticated) {
     return next("/login");

@@ -66,7 +66,7 @@ export default {
     return {
       credentials: {
         email: "",
-        password: ""
+        password: "",
       },
       loginBackground: loginBackground,
     };
@@ -78,14 +78,11 @@ export default {
   },
   methods: {
     login() {
-      this.lecturerStore.login(this.credentials.email, this.credentials.password)
-          .then(() => {
-            this.router.push({ path: '/' })
-          })
-          .catch((e) => {
-            this.toast.error(e.response?.data || e.message)
-          });
-    }
+      this.lecturerStore
+        .login(this.credentials.email, this.credentials.password)
+        .then(() => this.router.push({ path: "/" }))
+        .catch((e) => this.toast.error(e.response?.data || e.message));
+    },
   },
 };
 </script>
