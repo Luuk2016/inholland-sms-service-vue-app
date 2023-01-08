@@ -85,7 +85,7 @@ export default {
   methods: {
     async getLocations() {
       await axios
-        .get(this.baseAPI + "/locations")
+        .get("/locations")
         .then((result) => {
           this.locations = result.data;
 
@@ -99,7 +99,7 @@ export default {
     },
     async createGroup() {
       await axios
-        .post(this.baseAPI + "/groups", this.group)
+        .post("/groups", this.group)
         .then(() => {
           console.log("Group created.");
         })

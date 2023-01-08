@@ -48,7 +48,7 @@ export default {
   methods: {
     async getGroups() {
       await axios
-        .get(this.baseAPI + "/groups")
+        .get("/groups")
         .then((result) => {
           this.groups = result.data;
 

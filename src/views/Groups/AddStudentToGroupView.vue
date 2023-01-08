@@ -86,7 +86,7 @@ export default {
   methods: {
     async getGroup() {
       await axios
-        .get(this.baseAPI + "/groups/" + this.id)
+        .get("/groups/" + this.id)
         .then((result) => {
           this.group = result.data;
 
@@ -102,7 +102,7 @@ export default {
       console.log(this.student);
       await axios
         .post(
-          this.baseAPI + "/groups/" + this.group.id + "/students",
+          "/groups/" + this.group.id + "/students",
           this.student
         )
         .then(() => {

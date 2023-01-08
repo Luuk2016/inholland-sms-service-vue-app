@@ -63,7 +63,7 @@ export default {
   methods: {
     async getGroup() {
       await axios
-        .get(this.baseAPI + "/groups/" + this.id)
+        .get("/groups/" + this.id)
         .then((result) => {
           this.group = result.data;
 
@@ -77,7 +77,7 @@ export default {
     },
     async getStudents() {
       await axios
-        .get(this.baseAPI + "/groups/" + this.id + "/students")
+        .get("/groups/" + this.id + "/students")
         .then((result) => {
           this.students = result.data;
 

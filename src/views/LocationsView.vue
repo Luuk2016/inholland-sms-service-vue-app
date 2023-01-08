@@ -39,7 +39,7 @@ export default {
   methods: {
     async getLocations() {
       await axios
-        .get(this.baseAPI + "/locations")
+        .get("/locations")
         .then((result) => {
           this.locations = result.data;
 
