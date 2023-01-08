@@ -57,11 +57,17 @@
 <script>
 import Navigation from "@/components/Navigation.vue";
 import axios from "axios";
+import { useLecturerStore } from "@/stores/lecturer";
 
 export default {
   name: "AddStudentToGroupView",
   components: {
     Navigation,
+  },
+  setup() {
+    const lecturerStore = useLecturerStore();
+
+    return { lecturerStore };
   },
   props: {
     id: String,
@@ -86,7 +92,7 @@ export default {
   methods: {
     async getGroup() {
       await axios
-        .get("/groups/" + this.id)
+        .get("/groups/" + this.id, this.lecturerStore.authHeader)
         .then((result) => {
           this.group = result.data;
 
@@ -103,7 +109,8 @@ export default {
       await axios
         .post(
           "/groups/" + this.group.id + "/students",
-          this.student
+          this.student,
+          this.lecturerStore.authHeader
         )
         .then(() => {
           console.log("Student added to group.");

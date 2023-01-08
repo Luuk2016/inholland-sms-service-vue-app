@@ -31,11 +31,17 @@
 <script>
 import Navigation from "@/components/Navigation.vue";
 import axios from "axios";
+import { useLecturerStore } from "@/stores/lecturer";
 
 export default {
   name: "GroupView",
   components: {
     Navigation,
+  },
+  setup() {
+    const lecturerStore = useLecturerStore();
+
+    return { lecturerStore };
   },
   data() {
     return {
@@ -48,7 +54,7 @@ export default {
   methods: {
     async getGroups() {
       await axios
-        .get("/groups")
+        .get("/groups", this.lecturerStore.authHeader)
         .then((result) => {
           this.groups = result.data;
 

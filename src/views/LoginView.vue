@@ -50,21 +50,23 @@
 import loginBackground from "@/assets/images/login-bg.jpg";
 import { useLecturerStore } from "@/stores/lecturer";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "LoginView",
   components: {},
   setup() {
     const lecturerStore = useLecturerStore();
-    const router = useRouter()
+    const router = useRouter();
+    const toast = useToast();
 
-    return { userStore: lecturerStore, router };
+    return { lecturerStore, router, toast };
   },
   data() {
     return {
       credentials: {
         email: "",
-        password: "",
+        password: ""
       },
       loginBackground: loginBackground,
     };
@@ -76,9 +78,13 @@ export default {
   },
   methods: {
     login() {
-      this.userStore.login(this.credentials.email, this.credentials.password).then(() => {
-        this.router.push({ path: '/' })
-      });
+      this.lecturerStore.login(this.credentials.email, this.credentials.password)
+          .then(() => {
+            this.router.push({ path: '/' })
+          })
+          .catch((e) => {
+            this.toast.error(e.response.data)
+          });
     }
   },
 };

@@ -59,11 +59,17 @@
 <script>
 import Navigation from "@/components/Navigation.vue";
 import axios from "axios";
+import { useLecturerStore } from "@/stores/lecturer";
 
 export default {
   name: "CreateGroupView",
   components: {
     Navigation,
+  },
+  setup() {
+    const lecturerStore = useLecturerStore();
+
+    return { lecturerStore };
   },
   data() {
     return {
@@ -85,7 +91,7 @@ export default {
   methods: {
     async getLocations() {
       await axios
-        .get("/locations")
+        .get("/locations", this.lecturerStore.authHeader)
         .then((result) => {
           this.locations = result.data;
 
@@ -99,7 +105,7 @@ export default {
     },
     async createGroup() {
       await axios
-        .post("/groups", this.group)
+        .post("/groups", this.group, this.lecturerStore.authHeader)
         .then(() => {
           console.log("Group created.");
         })
