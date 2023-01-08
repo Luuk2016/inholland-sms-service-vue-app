@@ -83,7 +83,7 @@ export default {
             this.router.push({ path: '/' })
           })
           .catch((e) => {
-            this.toast.error(e.response.data)
+            this.toast.error(e.response?.data || e.message)
           });
     }
   },

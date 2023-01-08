@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { computed, ref } from "vue";
 import type { Ref, ComputedRef } from "vue";
-import { useRouter } from "vue-router";
 
 interface Lecturer {
     id: number,
@@ -25,7 +24,6 @@ export const useLecturerStore = defineStore("lecturer", (): State => {
     const authHeader = computed(() => { return {
         headers: { Authorization: token.value }
     }});
-    const router = useRouter();
 
     const login = async (email: string, password: string) => {
         const res = await axios.post("/login", {
@@ -40,7 +38,6 @@ export const useLecturerStore = defineStore("lecturer", (): State => {
     const logout = () => {
         lecturer.value = null;
         token.value = "";
-        router.push({ path: "/login" });
     };
 
     return {

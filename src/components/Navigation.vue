@@ -38,7 +38,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" @click="logout">Logout</a>
+            <a class="nav-link" type="button" @click="logout">Logout</a>
           </li>
         </ul>
       </div>
@@ -47,12 +47,22 @@
 </template>
 
 <script>
+import { useLecturerStore } from "@/stores/lecturer";
+import { useRouter } from "vue-router";
+
 export default {
   name: "Navigation",
+  setup() {
+    const lecturerStore = useLecturerStore();
+    const router = useRouter();
+
+    return { lecturerStore, router };
+  },
   methods: {
     logout() {
       if (confirm("Are you sure you want to logout?")) {
-        // TODO
+        this.lecturerStore.logout();
+        this.router.push({ path: "/login" });
       }
     },
   },
