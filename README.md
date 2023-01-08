@@ -21,7 +21,7 @@ $ npm run build
 
 ### Run lint
 ```
-$ npm run check-lint
+$ npm run lint
 ```
 
 ### Check lint
