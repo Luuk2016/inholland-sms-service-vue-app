@@ -41,11 +41,16 @@
 <script>
 import Navigation from "@/components/Navigation.vue";
 import axios from "../../../util/axios";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "SpecificGroupView",
   components: {
     Navigation,
+  },
+  setup() {
+    const toast = useToast();
+    return { toast };
   },
   props: {
     id: String,
@@ -68,11 +73,11 @@ export default {
           this.group = result.data;
 
           if (this.group.length === 0) {
-            console.log("No group could be found.");
+            this.toast.info("No group could be found.");
           }
         })
         .catch(() => {
-          console.log("Group couldn't be retrieved.");
+          this.toast.error("Group couldn't be retrieved.");
         });
     },
     async getStudents() {
@@ -82,15 +87,13 @@ export default {
           this.students = result.data;
 
           if (this.students.length === 0) {
-            console.log("No students could be found in this group.");
+            this.toast.info("No students could be found in this group.");
           }
         })
         .catch(() => {
-          console.log("Students from this group couldn't be retrieved.");
+          this.toast.error("Students from this group couldn't be retrieved.");
         });
     },
   },
 };
 </script>
-
-<style scoped></style>
