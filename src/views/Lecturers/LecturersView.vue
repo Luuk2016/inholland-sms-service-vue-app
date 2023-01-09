@@ -9,6 +9,7 @@
           v-for="lecturer in lecturers"
           :key="lecturer.id"
           :href="`mailto:${lecturer.email}`"
+          target="_blank"
           class="list-group-item list-group-item-action"
         >
           <p>{{ lecturer.email }}</p>
