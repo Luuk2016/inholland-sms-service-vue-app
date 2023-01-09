@@ -10,20 +10,16 @@
         <div class="col">
           <div class="input-group mb-3">
             <span class="input-group-text">E-mail</span>
-            <input
-              type="text"
-              class="form-control"
-              v-model="lecturer.email"
-            />
+            <input type="text" class="form-control" v-model="lecturer.email" />
           </div>
         </div>
         <div class="col">
           <div class="input-group mb-3">
             <span class="input-group-text">Password</span>
             <input
-                type="password"
-                class="form-control"
-                v-model="lecturer.password"
+              type="password"
+              class="form-control"
+              v-model="lecturer.password"
             />
           </div>
         </div>
@@ -84,7 +80,7 @@ export default {
         .post("/lecturer", this.lecturer)
         .then(() => {
           this.toast.success("Lecturer created");
-          this.$router.push("lecturers")
+          this.$router.push("lecturers");
         })
         .catch(() => {
           this.toast.error("Lecturer couldn't be created, please try again");

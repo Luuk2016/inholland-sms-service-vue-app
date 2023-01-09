@@ -2,20 +2,16 @@
   <navigation />
   <section>
     <div class="container">
-      <h2 class="mt-3 mt-lg-5">
-        Lecturers
-      </h2>
+      <h2 class="mt-3 mt-lg-5">Lecturers</h2>
 
       <div class="list-group mt-3">
         <a
           v-for="lecturer in lecturers"
           :key="lecturer.id"
-          :href="`mailto:${ lecturer.email }`"
+          :href="`mailto:${lecturer.email}`"
           class="list-group-item list-group-item-action"
         >
-          <p>
-            {{ lecturer.email }}
-          </p>
+          <p>{{ lecturer.email }}</p>
         </a>
       </div>
 
