@@ -22,11 +22,16 @@
 <script>
 import Navigation from "@/components/Navigation.vue";
 import axios from "../../util/axios";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "LocationView",
   components: {
     Navigation,
+  },
+  setup() {
+    const toast = useToast();
+    return { toast };
   },
   data() {
     return {
@@ -41,18 +46,18 @@ export default {
       await axios(true)
         .get("/locations")
         .then((result) => {
-          this.locations = result.data;
-
-          if (this.locations.length === 0) {
-            console.log("No locations have been found.");
+          if (result.data.length !== 0) {
+            this.locations = result.data;
+          } else {
+            this.toast.info("No locations have been found");
           }
         })
-        .catch(() => {
-          console.log("Locations couldn't be retrieved.");
+        .catch((error) => {
+          this.toast.error(
+            error.response?.data || "Locations couldn't be retrieved"
+          );
         });
     },
   },
 };
 </script>
-
-<style scoped></style>

@@ -31,11 +31,16 @@
 <script>
 import Navigation from "@/components/Navigation.vue";
 import axios from "../../../util/axios";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "GroupView",
   components: {
     Navigation,
+  },
+  setup() {
+    const toast = useToast();
+    return { toast };
   },
   data() {
     return {
@@ -50,18 +55,18 @@ export default {
       await axios(true)
         .get("/groups")
         .then((result) => {
-          this.groups = result.data;
-
-          if (this.groups.length === 0) {
-            console.log("No groups have been found.");
+          if (result.data.length !== 0) {
+            this.groups = result.data;
+          } else {
+            this.toast.info("No groups have been found.");
           }
         })
-        .catch(() => {
-          console.log("Groups couldn't be retrieved.");
+        .catch((error) => {
+          this.toast.error(
+            error.response?.data || "Groups couldn't be retrieved."
+          );
         });
     },
   },
 };
 </script>
-
-<style scoped></style>

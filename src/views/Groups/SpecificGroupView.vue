@@ -41,11 +41,16 @@
 <script>
 import Navigation from "@/components/Navigation.vue";
 import axios from "../../../util/axios";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "SpecificGroupView",
   components: {
     Navigation,
+  },
+  setup() {
+    const toast = useToast();
+    return { toast };
   },
   props: {
     id: String,
@@ -65,32 +70,35 @@ export default {
       await axios(true)
         .get("/groups/" + this.id)
         .then((result) => {
-          this.group = result.data;
-
-          if (this.group.length === 0) {
-            console.log("No group could be found.");
+          if (result.data.length !== 0) {
+            this.group = result.data;
+          } else {
+            this.toast.info("No group could be found");
           }
         })
-        .catch(() => {
-          console.log("Group couldn't be retrieved.");
+        .catch((error) => {
+          this.toast.error(
+            error.response?.data || "Group couldn't be retrieved"
+          );
         });
     },
     async getStudents() {
       await axios(true)
         .get("/groups/" + this.id + "/students")
         .then((result) => {
-          this.students = result.data;
-
-          if (this.students.length === 0) {
-            console.log("No students could be found in this group.");
+          if (result.data.length !== 0) {
+            this.students = result.data;
+          } else {
+            this.toast.info("No students could be found in this group");
           }
         })
-        .catch(() => {
-          console.log("Students from this group couldn't be retrieved.");
+        .catch((error) => {
+          this.toast.error(
+            error.response?.data ||
+              "Students from this group couldn't be retrieved"
+          );
         });
     },
   },
 };
 </script>
-
-<style scoped></style>

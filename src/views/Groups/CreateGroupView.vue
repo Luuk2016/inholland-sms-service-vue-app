@@ -59,11 +59,16 @@
 <script>
 import Navigation from "@/components/Navigation.vue";
 import axios from "../../../util/axios";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "CreateGroupView",
   components: {
     Navigation,
+  },
+  setup() {
+    const toast = useToast();
+    return { toast };
   },
   data() {
     return {
@@ -87,28 +92,28 @@ export default {
       await axios(true)
         .get("/locations")
         .then((result) => {
-          this.locations = result.data;
-
-          if (this.students.length === 0) {
-            console.log("No locations could be found.");
+          if (result.data.length !== 0) {
+            this.locations = result.data;
+          } else {
+            this.toast.info("No locations could be found");
           }
         })
-        .catch(() => {
-          console.log("Locations couldn't be retrieved.");
+        .catch((error) => {
+          this.toast.error(
+            error.response?.data || "Locations couldn't be retrieved"
+          );
         });
     },
     async createGroup() {
       await axios(true)
         .post("/groups", this.group)
         .then(() => {
-          console.log("Group created.");
+          this.toast.success("Group created.");
         })
-        .catch(() => {
-          console.log("Group couldn't be created, please try again.");
+        .catch((error) => {
+          this.toast.error(error.response?.data || "Group couldn't be created");
         });
     },
   },
 };
 </script>
-
-<style scoped></style>
