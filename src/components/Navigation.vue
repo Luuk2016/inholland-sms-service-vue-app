@@ -38,6 +38,12 @@
           </li>
 
           <li class="nav-item">
+            <router-link to="/lecturers" class="nav-link" active-class="active">
+              Lecturers
+            </router-link>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" type="button" @click="logout">Logout</a>
           </li>
         </ul>
