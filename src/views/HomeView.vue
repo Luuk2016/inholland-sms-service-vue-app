@@ -9,13 +9,14 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import Navigation from "@/components/Navigation.vue";
 
-export default {
+export default defineComponent({
   name: "HomeView",
   components: {
     Navigation,
   },
-};
+});
 </script>

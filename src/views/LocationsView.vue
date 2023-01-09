@@ -19,12 +19,13 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import Navigation from "@/components/Navigation.vue";
 import axios from "../../util/axios";
 import { useToast } from "vue-toastification";
 
-export default {
+export default defineComponent({
   name: "LocationView",
   components: {
     Navigation,
@@ -59,5 +60,5 @@ export default {
         });
     },
   },
-};
+});
 </script>

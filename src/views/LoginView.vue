@@ -46,13 +46,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import loginBackground from "@/assets/images/login-bg.jpg";
 import { useLecturerStore } from "@/stores/lecturer";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 
-export default {
+export default defineComponent({
   name: "LoginView",
   components: {},
   setup() {
@@ -84,7 +85,7 @@ export default {
         .catch((e) => this.toast.error(e.response?.data || e.message));
     },
   },
-};
+});
 </script>
 
 <style scoped>

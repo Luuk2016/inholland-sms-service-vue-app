@@ -52,11 +52,12 @@
   </nav>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import { useLecturerStore } from "@/stores/lecturer";
 import { useRouter } from "vue-router";
 
-export default {
+export default defineComponent({
   name: "Navigation",
   setup() {
     const lecturerStore = useLecturerStore();
@@ -72,7 +73,5 @@ export default {
       }
     },
   },
-};
+});
 </script>
-
-<style scoped></style>
