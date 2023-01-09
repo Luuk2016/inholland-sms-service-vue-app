@@ -11,10 +11,10 @@
           <div class="input-group mb-3">
             <span class="input-group-text">E-mail</span>
             <input
-                type="text"
-                class="form-control"
-                v-model="lecturer.email"
-                name="new_email"
+              type="text"
+              class="form-control"
+              v-model="lecturer.email"
+              name="new_email"
             />
           </div>
         </div>
