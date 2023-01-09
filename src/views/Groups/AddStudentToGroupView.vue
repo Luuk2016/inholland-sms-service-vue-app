@@ -96,7 +96,7 @@ export default {
           if (result.data.length !== 0) {
             this.group = result.data;
           } else {
-            this.toast.info("Groups could not be found");
+            this.toast.info("Group could not be found");
           }
         })
         .catch((error) => {
