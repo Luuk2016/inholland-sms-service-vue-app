@@ -60,7 +60,6 @@
 import Navigation from "@/components/Navigation.vue";
 import axios from "../../../util/axios";
 import { useToast } from "vue-toastification";
-import { useRouter } from "vue-router";
 
 export default {
   name: "CreateGroupView",
@@ -68,9 +67,8 @@ export default {
     Navigation,
   },
   setup() {
-    const router = useRouter();
     const toast = useToast();
-    return { router, toast };
+    return { toast };
   },
   data() {
     return {
@@ -94,25 +92,26 @@ export default {
       await axios(true)
         .get("/locations")
         .then((result) => {
-          this.locations = result.data;
-
-          if (this.locations.length === 0) {
-            this.toast.info("No locations could be found.");
+          if (result.data.length !== 0) {
+            this.locations = result.data;
+          } else {
+            this.toast.info("No locations could be found");
           }
         })
-        .catch(() => {
-          this.toast.error("Locations couldn't be retrieved.");
+        .catch((error) => {
+          this.toast.error(
+            error.response?.data || "Locations couldn't be retrieved"
+          );
         });
     },
     async createGroup() {
       await axios(true)
         .post("/groups", this.group)
         .then(() => {
-          this.router.push("/groups");
           this.toast.success("Group created.");
         })
         .catch((error) => {
-          this.toast.error(error.response.body);
+          this.toast.error(error.response?.data || "Group couldn't be created");
         });
     },
   },

@@ -55,14 +55,16 @@ export default {
       await axios(true)
         .get("/groups")
         .then((result) => {
-          this.groups = result.data;
-
-          if (this.groups.length === 0) {
+          if (result.data.length !== 0) {
+            this.groups = result.data;
+          } else {
             this.toast.info("No groups have been found.");
           }
         })
-        .catch(() => {
-          this.toast.error("Groups couldn't be retrieved.");
+        .catch((error) => {
+          this.toast.error(
+            error.response?.data || "Groups couldn't be retrieved."
+          );
         });
     },
   },

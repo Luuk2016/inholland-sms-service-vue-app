@@ -46,14 +46,16 @@ export default {
       await axios(true)
         .get("/locations")
         .then((result) => {
-          this.locations = result.data;
-
-          if (this.locations.length === 0) {
-            this.toast.info("No locations have been found.");
+          if (result.data.length !== 0) {
+            this.locations = result.data;
+          } else {
+            this.toast.info("No locations have been found");
           }
         })
-        .catch(() => {
-          this.toast.error("Locations couldn't be retrieved.");
+        .catch((error) => {
+          this.toast.error(
+            error.response?.data || "Locations couldn't be retrieved"
+          );
         });
     },
   },

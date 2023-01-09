@@ -93,14 +93,16 @@ export default {
       await axios(true)
         .get("/groups/" + this.id)
         .then((result) => {
-          this.group = result.data;
-
-          if (this.group.length === 0) {
-            this.toast.info("No groups could be found.");
+          if (result.data.length !== 0) {
+            this.group = result.data;
+          } else {
+            this.toast.info("Groups could not be found");
           }
         })
         .catch((error) => {
-          this.toast.error(error.response.data);
+          this.toast.error(
+            error.response?.data || "Group couldn't be retrieved"
+          );
         });
     },
     async addStudentToGroup() {
@@ -108,10 +110,12 @@ export default {
       await axios(true)
         .post("/groups/" + this.group.id + "/students", this.student)
         .then(() => {
-          this.toast.success("Student added to group.");
+          this.toast.success("Student added to group");
         })
         .catch((error) => {
-          this.toast.error(error.response.data);
+          this.toast.error(
+            error.response?.data || "Student couldn't be added to group"
+          );
         });
     },
   },
