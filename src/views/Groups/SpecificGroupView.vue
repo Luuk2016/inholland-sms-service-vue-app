@@ -40,18 +40,12 @@
 
 <script>
 import Navigation from "@/components/Navigation.vue";
-import axios from "axios";
-import { useLecturerStore } from "@/stores/lecturer";
+import axios from "../../../util/axios";
 
 export default {
   name: "SpecificGroupView",
   components: {
     Navigation,
-  },
-  setup() {
-    const lecturerStore = useLecturerStore();
-
-    return { lecturerStore };
   },
   props: {
     id: String,
@@ -68,8 +62,8 @@ export default {
   },
   methods: {
     async getGroup() {
-      await axios
-        .get("/groups/" + this.id, this.lecturerStore.authHeader)
+      await axios(true)
+        .get("/groups/" + this.id)
         .then((result) => {
           this.group = result.data;
 
@@ -82,8 +76,8 @@ export default {
         });
     },
     async getStudents() {
-      await axios
-        .get("/groups/" + this.id + "/students", this.lecturerStore.authHeader)
+      await axios(true)
+        .get("/groups/" + this.id + "/students")
         .then((result) => {
           this.students = result.data;
 
