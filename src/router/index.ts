@@ -6,6 +6,7 @@ import LocationsView from "@/views/LocationsView.vue";
 import SpecificGroupView from "@/views/Groups/SpecificGroupView.vue";
 import CreateGroupView from "@/views/Groups/CreateGroupView.vue";
 import AddStudentToGroupView from "@/views/Groups/AddStudentToGroupView.vue";
+import LecturersView from "@/views/LecturersView.vue";
 import { useLecturerStore } from "@/stores/lecturer";
 
 const router = createRouter({
@@ -52,6 +53,12 @@ const router = createRouter({
       path: "/locations",
       name: "Locations",
       component: LocationsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/lecturers",
+      name: "Lecturers",
+      component: LecturersView,
       meta: { requiresAuth: true },
     },
   ],
