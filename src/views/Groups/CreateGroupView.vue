@@ -58,7 +58,7 @@
 
 <script>
 import Navigation from "@/components/Navigation.vue";
-import axios from "axios";
+import axios from "../../../util/axios";
 
 export default {
   name: "CreateGroupView",
@@ -84,8 +84,8 @@ export default {
   },
   methods: {
     async getLocations() {
-      await axios
-        .get(this.baseAPI + "/locations")
+      await axios(true)
+        .get("/locations")
         .then((result) => {
           this.locations = result.data;
 
@@ -98,8 +98,8 @@ export default {
         });
     },
     async createGroup() {
-      await axios
-        .post(this.baseAPI + "/groups", this.group)
+      await axios(true)
+        .post("/groups", this.group)
         .then(() => {
           console.log("Group created.");
         })

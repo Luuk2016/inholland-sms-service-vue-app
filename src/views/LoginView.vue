@@ -11,13 +11,13 @@
           <div class="col-md-7">
             <h3>Login to <strong>Inholland SMS service</strong></h3>
 
-            <form action="#" method="post" class="mt-3">
+            <form @submit.prevent="login" method="post" class="mt-3">
               <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Email"
-                  v-model="login.email"
+                  v-model="credentials.email"
                 />
               </div>
               <div class="form-group mb-3">
@@ -25,7 +25,7 @@
                   type="password"
                   class="form-control"
                   placeholder="Password"
-                  v-model="login.password"
+                  v-model="credentials.password"
                 />
               </div>
 
@@ -48,13 +48,23 @@
 
 <script>
 import loginBackground from "@/assets/images/login-bg.jpg";
+import { useLecturerStore } from "@/stores/lecturer";
+import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "LoginView",
   components: {},
+  setup() {
+    const lecturerStore = useLecturerStore();
+    const router = useRouter();
+    const toast = useToast();
+
+    return { lecturerStore, router, toast };
+  },
   data() {
     return {
-      login: {
+      credentials: {
         email: "",
         password: "",
       },
@@ -63,10 +73,17 @@ export default {
   },
   computed: {
     loginDisabled() {
-      return this.login.email === "" || this.login.password === "";
+      return this.credentials.email === "" || this.credentials.password === "";
     },
   },
-  methods: {},
+  methods: {
+    login() {
+      this.lecturerStore
+        .login(this.credentials.email, this.credentials.password)
+        .then(() => this.router.push({ path: "/" }))
+        .catch((e) => this.toast.error(e.response?.data || e.message));
+    },
+  },
 };
 </script>
 

@@ -40,7 +40,7 @@
 
 <script>
 import Navigation from "@/components/Navigation.vue";
-import axios from "axios";
+import axios from "../../../util/axios";
 
 export default {
   name: "SpecificGroupView",
@@ -62,8 +62,8 @@ export default {
   },
   methods: {
     async getGroup() {
-      await axios
-        .get(this.baseAPI + "/groups/" + this.id)
+      await axios(true)
+        .get("/groups/" + this.id)
         .then((result) => {
           this.group = result.data;
 
@@ -76,8 +76,8 @@ export default {
         });
     },
     async getStudents() {
-      await axios
-        .get(this.baseAPI + "/groups/" + this.id + "/students")
+      await axios(true)
+        .get("/groups/" + this.id + "/students")
         .then((result) => {
           this.students = result.data;
 

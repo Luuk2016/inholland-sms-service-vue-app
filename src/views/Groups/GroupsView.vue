@@ -30,7 +30,7 @@
 
 <script>
 import Navigation from "@/components/Navigation.vue";
-import axios from "axios";
+import axios from "../../../util/axios";
 
 export default {
   name: "GroupView",
@@ -47,8 +47,8 @@ export default {
   },
   methods: {
     async getGroups() {
-      await axios
-        .get(this.baseAPI + "/groups")
+      await axios(true)
+        .get("/groups")
         .then((result) => {
           this.groups = result.data;
 

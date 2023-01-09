@@ -56,7 +56,7 @@
 
 <script>
 import Navigation from "@/components/Navigation.vue";
-import axios from "axios";
+import axios from "../../../util/axios";
 
 export default {
   name: "AddStudentToGroupView",
@@ -85,8 +85,8 @@ export default {
   },
   methods: {
     async getGroup() {
-      await axios
-        .get(this.baseAPI + "/groups/" + this.id)
+      await axios(true)
+        .get("/groups/" + this.id)
         .then((result) => {
           this.group = result.data;
 
@@ -100,11 +100,8 @@ export default {
     },
     async addStudentToGroup() {
       console.log(this.student);
-      await axios
-        .post(
-          this.baseAPI + "/groups/" + this.group.id + "/students",
-          this.student
-        )
+      await axios(true)
+        .post("/groups/" + this.group.id + "/students", this.student)
         .then(() => {
           console.log("Student added to group.");
         })

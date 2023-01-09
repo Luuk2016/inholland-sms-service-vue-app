@@ -21,7 +21,7 @@
 
 <script>
 import Navigation from "@/components/Navigation.vue";
-import axios from "axios";
+import axios from "../../util/axios";
 
 export default {
   name: "LocationView",
@@ -38,8 +38,8 @@ export default {
   },
   methods: {
     async getLocations() {
-      await axios
-        .get(this.baseAPI + "/locations")
+      await axios(true)
+        .get("/locations")
         .then((result) => {
           this.locations = result.data;
 
