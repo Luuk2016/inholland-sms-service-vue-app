@@ -32,7 +32,7 @@
 
 <script>
 import Navigation from "@/components/Navigation.vue";
-import axios from "../../util/axios";
+import axios from "../../../util/axios";
 import { useToast } from "vue-toastification";
 
 export default {
