@@ -7,8 +7,8 @@ export default (withAuth = false) => {
   const options: any = {
     baseURL: "http://localhost:5000",
     headers: {
-      Authorization: withAuth ? lecturerStore.token : ''
-    }
+      Authorization: withAuth ? lecturerStore.token : ""
+    },
   };
 
   const instance = axios.create(options);
