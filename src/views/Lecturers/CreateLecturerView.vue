@@ -84,7 +84,7 @@ export default defineComponent({
   methods: {
     async createLecturer() {
       await axios(true)
-        .post("/lecturer", this.lecturer)
+        .post("/lecturers", this.lecturer)
         .then(() => {
           this.toast.success("Lecturer created");
           this.$router.push("lecturers");
