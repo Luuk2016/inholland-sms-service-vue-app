@@ -2,13 +2,14 @@ import { createRouter, createWebHistory } from "vue-router";
 import LoginView from "@/views/LoginView.vue";
 import HomeView from "@/views/HomeView.vue";
 import GroupsView from "@/views/Groups/GroupsView.vue";
-import LocationsView from "@/views/LocationsView.vue";
+import LocationsView from "@/views/Locations/LocationsView.vue";
 import SpecificGroupView from "@/views/Groups/SpecificGroupView.vue";
 import CreateGroupView from "@/views/Groups/CreateGroupView.vue";
 import AddStudentToGroupView from "@/views/Groups/AddStudentToGroupView.vue";
 import LecturersView from "@/views/Lecturers/LecturersView.vue";
 import CreateLecturerView from "@/views/Lecturers/CreateLecturerView.vue";
 import { useLecturerStore } from "@/stores/lecturer";
+import SpecificLocationView from "@/views/Locations/SpecificLocationView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,6 +55,13 @@ const router = createRouter({
       path: "/locations",
       name: "Locations",
       component: LocationsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/locations/:id",
+      name: "Location",
+      component: SpecificLocationView,
+      props: true,
       meta: { requiresAuth: true },
     },
     {
