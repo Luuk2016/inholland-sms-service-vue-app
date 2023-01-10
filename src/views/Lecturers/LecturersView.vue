@@ -54,7 +54,7 @@ export default defineComponent({
   methods: {
     async getLecturers() {
       await axios(true)
-        .get("/lecturer")
+        .get("/lecturers")
         .then((result) => {
           this.lecturers = result.data;
 
