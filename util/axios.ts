@@ -5,7 +5,7 @@ export default (withAuth = false) => {
   const lecturerStore = useLecturerStore();
 
   const options: any = {
-    baseURL: "http://localhost:5000",
+    baseURL: "http://127.0.0.1:5000",
     headers: {
       Authorization: withAuth ? lecturerStore.token : "",
     },
