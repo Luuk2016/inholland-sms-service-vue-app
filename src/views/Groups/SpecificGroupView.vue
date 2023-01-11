@@ -27,11 +27,7 @@
       >
         Add student
       </button>
-      <button
-        type="button"
-        class="btn btn-secondary"
-        @click="$router.go(-1)"
-      >
+      <button type="button" class="btn btn-secondary" @click="$router.go(-1)">
         Go back
       </button>
     </div>
