@@ -6,15 +6,16 @@
 
       <p>The following locations are available:</p>
 
-      <ul class="list-group mt-3">
-        <li
+      <div class="list-group mt-3">
+        <a
           v-for="location in locations"
           :key="location.id"
-          class="list-group-item"
+          @click="this.$router.push('/locations/' + location.id)"
+          class="list-group-item list-group-item-action"
         >
           <b>{{ location.name }}</b>
-        </li>
-      </ul>
+        </a>
+      </div>
     </div>
   </section>
 </template>
@@ -22,7 +23,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Navigation from "@/components/Navigation.vue";
-import axios from "../../util/axios";
+import axios from "../../../util/axios";
 import { useToast } from "vue-toastification";
 
 export default defineComponent({

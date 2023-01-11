@@ -2,31 +2,22 @@
   <navigation />
   <section>
     <div class="container">
-      <h2 class="mt-3 mt-lg-5">Group: {{ group.name }}</h2>
-      <p>The students in this group:</p>
+      <h2 class="mt-3 mt-lg-5">Location: {{ location.name }}</h2>
+      <p>The groups at this locations:</p>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">Phone number</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="student in students" :key="student.id">
+          <tr v-for="group in groups" :key="group.id">
             <td>
-              <b>{{ student.name }}</b>
+              <b>{{ group.name }}</b>
             </td>
-            <td>{{ student.phone_number }}</td>
           </tr>
         </tbody>
       </table>
-      <button
-        type="button"
-        class="btn btn-primary me-2"
-        @click="this.$router.push('/groups/' + group.id + '/add-student')"
-      >
-        Add student
-      </button>
       <button
         type="button"
         class="btn btn-secondary"
@@ -45,7 +36,7 @@ import axios from "../../../util/axios";
 import { useToast } from "vue-toastification";
 
 export default defineComponent({
-  name: "SpecificGroupView",
+  name: "SpecificLocationView",
   components: {
     Navigation,
   },
@@ -58,45 +49,45 @@ export default defineComponent({
   },
   data() {
     return {
-      group: Object,
-      students: [Object],
+      location: Object,
+      groups: [Object],
     };
   },
   async mounted() {
-    await this.getGroup();
-    await this.getStudents();
+    await this.getLocation();
+    await this.getGroups();
   },
   methods: {
-    async getGroup() {
+    async getLocation() {
       await axios(true)
-        .get("/groups/" + this.id)
+        .get("/locations/" + this.id)
         .then((result) => {
           if (result.data.length !== 0) {
-            this.group = result.data;
+            this.location = result.data;
           } else {
-            this.toast.info("No group could be found");
+            this.toast.info("No location could be found");
           }
         })
         .catch((error) => {
           this.toast.error(
-            error.response?.data || "Group couldn't be retrieved"
+            error.response?.data || "Location couldn't be retrieved"
           );
         });
     },
-    async getStudents() {
+    async getGroups() {
       await axios(true)
-        .get("/groups/" + this.id + "/students")
+        .get("/locations/" + this.id + "/groups")
         .then((result) => {
           if (result.data.length !== 0) {
-            this.students = result.data;
+            this.groups = result.data;
           } else {
-            this.toast.info("No students could be found in this group");
+            this.toast.info("No groups could be found at this location");
           }
         })
         .catch((error) => {
           this.toast.error(
             error.response?.data ||
-              "Students from this group couldn't be retrieved"
+              "Groups at this location couldn't be retrieved"
           );
         });
     },
