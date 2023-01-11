@@ -44,11 +44,7 @@
         >
           Create group
         </button>
-        <button
-          type="button"
-          class="btn btn-danger"
-          @click="this.$router.go(-1)"
-        >
+        <button type="button" class="btn btn-danger" @click="$router.go(-1)">
           Cancel
         </button>
       </div>
@@ -71,11 +67,17 @@ export default defineComponent({
     const toast = useToast();
     return { toast };
   },
-  data() {
+  data(): {
+    group: {
+      name: string;
+      location_id: string;
+    };
+    locations: Array<any>;
+  } {
     return {
       group: {
         name: "",
-        location_id: null,
+        location_id: "",
       },
       locations: [],
     };

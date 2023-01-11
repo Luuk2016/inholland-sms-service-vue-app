@@ -10,7 +10,7 @@
         <a
           v-for="group in groups"
           :key="group.id"
-          @click="this.$router.push('/groups/' + group.id)"
+          @click="$router.push('/groups/' + group.id)"
           class="list-group-item list-group-item-action"
         >
           <b>{{ group.name }}</b>
@@ -20,7 +20,7 @@
       <button
         type="button"
         class="btn btn-primary mt-3"
-        @click="this.$router.push('/create-group')"
+        @click="$router.push('/create-group')"
       >
         Create new group
       </button>
@@ -43,9 +43,11 @@ export default defineComponent({
     const toast = useToast();
     return { toast };
   },
-  data() {
+  data(): {
+    groups: Array<any>;
+  } {
     return {
-      groups: [Object],
+      groups: [],
     };
   },
   async mounted() {

@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <div class="input-group mt-4">
+      <div class="input-group">
         <button
           type="button"
           class="btn btn-primary"
@@ -42,11 +42,7 @@
         >
           Add student
         </button>
-        <button
-          type="button"
-          class="btn btn-danger"
-          @click="this.$router.go(-1)"
-        >
+        <button type="button" class="btn btn-danger" @click="$router.go(-1)">
           Cancel
         </button>
       </div>
@@ -72,12 +68,24 @@ export default defineComponent({
   props: {
     id: String,
   },
-  data() {
+  data(): {
+    group: {
+      id: string;
+      name: string;
+    };
+    student: {
+      name: string;
+      phone_number: string;
+    };
+  } {
     return {
-      group: Object,
+      group: {
+        id: "",
+        name: "",
+      },
       student: {
         name: "",
-        phone_number: null,
+        phone_number: "",
       },
     };
   },

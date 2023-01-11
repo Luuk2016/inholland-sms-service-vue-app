@@ -23,14 +23,14 @@
       <button
         type="button"
         class="btn btn-primary me-2"
-        @click="this.$router.push('/groups/' + group.id + '/add-student')"
+        @click="$router.push('/groups/' + group.id + '/add-student')"
       >
         Add student
       </button>
       <button
         type="button"
         class="btn btn-secondary"
-        @click="this.$router.go(-1)"
+        @click="$router.go(-1)"
       >
         Go back
       </button>
@@ -56,10 +56,19 @@ export default defineComponent({
   props: {
     id: String,
   },
-  data() {
+  data(): {
+    group: {
+      id: string;
+      name: string;
+    };
+    students: Array<any>;
+  } {
     return {
-      group: Object,
-      students: [Object],
+      group: {
+        id: "",
+        name: "",
+      },
+      students: [],
     };
   },
   async mounted() {
