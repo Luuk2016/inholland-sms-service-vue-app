@@ -1,30 +1,23 @@
 # Inholland SMS service - Vue app
+The Vue app for the Inholland SMS service.
 
-### How to run
-1. Clone the project using a Git client.
-
-2. Open a terminal and move your working directory to the project.
-
-3. Install the required dependencies:
+### How to run (local)
+1. Install the required dependencies:
 ```
 $ npm install
 ```
-4. Run the app:
+2. Run the app:
 ```
 $ npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### How to run (Docker)
+1. Run Docker Compose
 ```
-$ npm run build
-```
-
-### Run lint
-```
-$ npm run lint
+$ docker-compose up -d
 ```
 
-### Check lint
-```
-$ npm run check-lint
-```
+### Authors
+* **[Luuk Kenselaar](https://github.com/Luuk2016)**
+* **[Casper van Genderingen](https://github.com/vangenderingen)**
+* **[Jeroen Bol](https://github.com/jerohero)**
