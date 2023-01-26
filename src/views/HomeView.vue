@@ -52,7 +52,7 @@
 
         <div class="input-group">
           <span class="input-group-text">Message *</span>
-          <input type="text" class="form-control" v-model="SMS.Message">
+          <input type="text" class="form-control" v-model="SMS.Message" />
         </div>
 
         <div class="input-group">
