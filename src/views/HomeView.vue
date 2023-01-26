@@ -7,7 +7,7 @@
       <div class="row g-3">
           <div class="input-group">
             <span class="input-group-text">Location *</span>
-            <select class="form-select" v-model="selected_location">
+            <select class="form-select" v-model="selected_location" @change="getGroupByLocation()">
               <option :value="null" disabled>Please select a location</option>
               <option
                 v-for="location in locations"
@@ -73,6 +73,7 @@ export default defineComponent({
   },
   methods: {
     async getLocations() {
+      console.log(this.locations)
       await axios(true)
         .get("/locations")
         .then((result) => {
@@ -88,7 +89,9 @@ export default defineComponent({
           );
         });
   },
-  async getGroups() {
+  async getGroupByLocation() {
+    console.log(this.selected_location);
+    
       await axios(true)
         .get("location/ + " + this.selected_location + "/groups")
         .then((result) => {
