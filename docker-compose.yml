@@ -1,0 +1,7 @@
+version: '3'
+services:
+  app:
+    container_name: inholland-sms-service-vue-app
+    build: .
+    ports:
+      - "8080:80"
