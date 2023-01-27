@@ -28,7 +28,7 @@ export const useLecturerStore = defineStore("lecturer", (): State => {
     });
 
     lecturer.value = res.data.lecturer;
-    token.value = res.data.auth_token;
+    token.value = res.data.access_token;
   };
 
   const logout = () => {
