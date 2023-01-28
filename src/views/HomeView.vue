@@ -56,8 +56,12 @@
         </div>
 
         <div class="input-group">
-          <span class="input-group-text">Schedule message</span>
-          <Datepicker v-model="SMS.Scheduled_at"></Datepicker>
+          <span class="input-group-text">Scheduled at *</span>
+          <Datepicker
+            v-model="SMS.Scheduled_at"
+            :min-date="new Date()"
+            format="dd/MM/yyyy HH:mm"
+          ></Datepicker>
         </div>
 
         <div class="input-group">
