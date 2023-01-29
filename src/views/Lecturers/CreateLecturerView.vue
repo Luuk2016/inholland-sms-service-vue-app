@@ -55,7 +55,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Navigation from "@/components/Navigation.vue";
-import axios, { API_URL } from "../../../util/axios";
+import axios from "@/util/axios";
 import { useToast } from "vue-toastification";
 
 export default defineComponent({
@@ -83,7 +83,7 @@ export default defineComponent({
   },
   methods: {
     async createLecturer() {
-      await axios(API_URL.baseAPI, true)
+      await axios(import.meta.env.VITE_BASE_API_URL, true)
         .post("/lecturers", this.lecturer)
         .then(() => {
           this.toast.success("Lecturer created");

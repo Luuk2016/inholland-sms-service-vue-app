@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import type { Ref, ComputedRef } from "vue";
-import axios, { API_URL } from "../../util/axios";
+import axios from "@/util/axios";
 
 interface Lecturer {
   id: number;
@@ -22,7 +22,7 @@ export const useLecturerStore = defineStore("lecturer", (): State => {
   const isAuthenticated = computed(() => !!token.value);
 
   const login = async (email: string, password: string) => {
-    const res = await axios(API_URL.baseAPI).post("/login", {
+    const res = await axios(import.meta.env.VITE_BASE_API_URL).post("/login", {
       email: email,
       password: password,
     });
