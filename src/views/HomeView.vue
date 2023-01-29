@@ -77,7 +77,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Navigation from "@/components/Navigation.vue";
-import axios from "../../util/axios";
+import axios, { API_URL } from "../../util/axios";
 import { useToast } from "vue-toastification";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -161,9 +161,9 @@ export default defineComponent({
 
       if (this.all_groups) {
         this.url =
-          "http://127.0.0.1:3000/send/locations/" + this.selected_location;
+          API_URL.messagingAPI + "/send/locations/" + this.selected_location;
       } else {
-        this.url = "http://127.0.0.1:3000/send/groups/" + this.selected_group;
+        this.url = API_URL.messagingAPI + "/send/groups/" + this.selected_group;
       }
 
       if (this.SMS.Scheduled_at == null) {
