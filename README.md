@@ -6,7 +6,9 @@ The Vue app for the Inholland SMS service.
 ```
 $ npm install
 ```
-2. Run the app:
+2. Copy the .env.example file, and name it .env.
+
+3. Run the app:
 ```
 $ npm run dev
 ```

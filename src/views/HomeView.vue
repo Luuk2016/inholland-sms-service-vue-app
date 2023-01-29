@@ -77,7 +77,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Navigation from "@/components/Navigation.vue";
-import axios, { API_URL } from "../../util/axios";
+import axios from "@/util/axios";
 import { useToast } from "vue-toastification";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -112,7 +112,7 @@ export default defineComponent({
   },
   methods: {
     async getLocations() {
-      await axios(API_URL.baseAPI, true)
+      await axios(import.meta.env.VITE_BASE_API_URL, true)
         .get("/locations")
         .then((result) => {
           if (result.data.length !== 0) {
@@ -129,7 +129,7 @@ export default defineComponent({
     },
     async getGroupByLocation() {
       this.groups = [];
-      await axios(API_URL.baseAPI, true)
+      await axios(import.meta.env.VITE_BASE_API_URL, true)
         .get("locations/" + this.selected_location + "/groups")
         .then((result) => {
           if (result.data.length !== 0) {
@@ -159,19 +159,11 @@ export default defineComponent({
         return;
       }
 
-      if (this.all_groups) {
-        this.url =
-          API_URL.messagingAPI + "/send/locations/" + this.selected_location;
-      } else {
-        this.url = API_URL.messagingAPI + "/send/groups/" + this.selected_group;
-      }
+      this.url = this.all_groups
+        ? "/send/locations/" + this.selected_location
+        : "/send/groups/" + this.selected_group;
 
-      if (this.SMS.Scheduled_at == null) {
-        // Set date to today if it's empty
-        this.SMS.Scheduled_at = new Date();
-      }
-
-      await axios(API_URL.messagingAPI, false)
+      await axios(import.meta.env.VITE_MESSAGING_API_URL, false)
         .post(this.url, this.SMS)
         .then(() => {
           this.toast.success("SMS has been sent");
