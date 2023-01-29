@@ -8,8 +8,6 @@ import "./assets/main.css";
 
 const app = createApp(App);
 
-app.config.globalProperties.messagingAPI = "";
-
 app.use(createPinia());
 app.use(router);
 app.use(Toast, {
