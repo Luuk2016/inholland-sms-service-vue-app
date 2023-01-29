@@ -31,7 +31,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Navigation from "@/components/Navigation.vue";
-import axios from "../../../util/axios";
+import axios, { API_URL } from "../../../util/axios";
 import { useToast } from "vue-toastification";
 
 export default defineComponent({
@@ -53,7 +53,7 @@ export default defineComponent({
   },
   methods: {
     async getGroups() {
-      await axios(true)
+      await axios(API_URL.baseAPI, true)
         .get("/groups")
         .then((result) => {
           if (result.data.length !== 0) {
