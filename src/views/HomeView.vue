@@ -112,7 +112,7 @@ export default defineComponent({
   },
   methods: {
     async getLocations() {
-      await axios(true)
+      await axios(API_URL.baseAPI, true)
         .get("/locations")
         .then((result) => {
           if (result.data.length !== 0) {
@@ -129,7 +129,7 @@ export default defineComponent({
     },
     async getGroupByLocation() {
       this.groups = [];
-      await axios(true)
+      await axios(API_URL.baseAPI, true)
         .get("locations/" + this.selected_location + "/groups")
         .then((result) => {
           if (result.data.length !== 0) {
@@ -171,10 +171,10 @@ export default defineComponent({
         this.SMS.Scheduled_at = new Date();
       }
 
-      await axios(false)
+      await axios(API_URL.messagingAPI, false)
         .post(this.url, this.SMS)
         .then(() => {
-          this.toast.success("SMS send.");
+          this.toast.success("SMS has been sent");
           this.initialState();
         })
         .catch((error) => {
