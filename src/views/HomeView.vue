@@ -166,7 +166,7 @@ export default defineComponent({
       await axios(import.meta.env.VITE_MESSAGING_API_URL, false)
         .post(this.url, this.SMS)
         .then(() => {
-          this.toast.success("SMS send.");
+          this.toast.success("SMS has been sent");
           this.initialState();
         })
         .catch((error) => {
