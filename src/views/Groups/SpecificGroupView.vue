@@ -68,7 +68,7 @@ export default defineComponent({
   },
   methods: {
     async getGroup() {
-      await axios(API_URL.baseAPI,, true)
+      await axios(API_URL.baseAPI, true)
         .get("/groups/" + this.id)
         .then((result) => {
           if (result.data.length !== 0) {
