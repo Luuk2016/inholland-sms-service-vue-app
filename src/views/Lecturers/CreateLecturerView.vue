@@ -11,6 +11,7 @@
           <div class="input-group mb-3">
             <span class="input-group-text">E-mail</span>
             <input
+              placeholder="johndoe@email.com"
               type="text"
               class="form-control"
               v-model="lecturer.email"
@@ -22,6 +23,7 @@
           <div class="input-group mb-3">
             <span class="input-group-text">Password</span>
             <input
+              placeholder="********"
               type="password"
               class="form-control"
               v-model="lecturer.password"
