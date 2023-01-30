@@ -163,7 +163,7 @@ export default defineComponent({
         ? "/send/locations/" + this.selected_location
         : "/send/groups/" + this.selected_group;
 
-      await axios(import.meta.env.VITE_MESSAGING_API_URL, false)
+      await axios(import.meta.env.VITE_MESSAGING_API_URL, true)
         .post(this.url, this.SMS)
         .then(() => {
           this.toast.success("SMS has been sent");
