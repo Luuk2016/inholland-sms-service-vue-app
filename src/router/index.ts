@@ -78,7 +78,7 @@ const router = createRouter({
     },
     {
       path: "/:pathMatch(.*)*",
-      component: LoginView
+      component: LoginView,
     },
   ],
 });
