@@ -76,6 +76,10 @@ const router = createRouter({
       component: CreateLecturerView,
       meta: { requiresAuth: true },
     },
+    {
+      path: "/:pathMatch(.*)*",
+      component: LoginView,
+    },
   ],
 });
 
