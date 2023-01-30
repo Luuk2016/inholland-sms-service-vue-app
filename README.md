@@ -1,4 +1,7 @@
 # Inholland SMS service - Vue app
+[![Check lint](https://github.com/Luuk2016/inholland-sms-service-vue-app/actions/workflows/eslint.yml/badge.svg)](https://github.com/Luuk2016/inholland-sms-service-vue-app/actions/workflows/eslint.yml)
+[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/lkenselaar/inholland-sms-service-vue-app)](https://hub.docker.com/repository/docker/lkenselaar/inholland-sms-service-vue-app)
+
 The Vue app for the Inholland SMS service.
 
 ### How to run (local)
